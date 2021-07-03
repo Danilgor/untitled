@@ -1,0 +1,16 @@
+@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham-mixin.scss";
+
+.ag-theme-balham {
+  @include ag-theme-balham((
+    odd-row-background-color: #FAFAFA
+  ));
+  .ag-header {
+    text-style: italic;
+  }
+  .ag-header-cell-text {
+    font-size: 100%;
+    color: green;
+  }
+
+}

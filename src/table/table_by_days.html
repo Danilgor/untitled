@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WB</title>
+</head>
+<body>
+<h1>Данные за всё время</h1>
+<script>
+    let products = [
+        {date: '22.06.2021', price: 1735, qty: 3},
+        {date: '21.06.2021', price: 1735, qty: 1},
+        {date: '20.06.2021', price: 1735, qty: 1},
+        {date: '19.06.2021', price: 1735, qty: 0},
+        {date: '18.06.2021', price: 1845, qty: 3},
+        {date: '17.06.2021', price: 1845, qty: 1},
+        {date: '16.06.2021', price: 1845, qty: 0},
+        {date: '15.06.2021', price: 1845, qty: 1},
+        {date: '14.06.2021', price: 1845, qty: 3},
+        {date: '13.06.2021', price: 1845, qty: 1},
+        {date: '12.06.2021', price: 1845, qty: 0},
+        {date: '11.06.2021', price: 1845, qty: 2},
+        {date: '10.06.2021', price: 1600, qty: 2},
+        {date: '09.06.2021', price: 1500, qty: 1}
+    ];
+</script>
+</body>
+</html>
+
+<!---
+const Table = ({sortData, contactData}) => {
+    return (
+        <table className="table table-bordered">
+            <thead>
+            <button type="button" className="btn btn-success">Success</button>
+            <tr>
+                <th onClick={()=>{sortData('date')}}>
+                    date
+                </th>
+                <th onClick={()=>{sortData('price')}}>price</th>
+                <th onClick={()=>{sortData('qty')}}>qty</th>
+            </tr>
+            </thead>
+            <tbody>
+                {contactData.map(
+                    item=>(
+                        <tr key={item.date}>
+                            <td> {item.date}</td>
+                            <td> {item.price}</td>
+                            <td> {item.qty}</td>
+                        </tr>
+                    ))}
+            </tbody>
+        </table>
+    )
+}
