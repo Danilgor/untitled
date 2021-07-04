@@ -4,7 +4,7 @@ import 'ag-grid-enterprise';
 import '../App.scss'
 import './Table.css'
 
-const TableDay = () => {
+const TableDay = (props) => {
 
     const row_style = { background: 'black' };
     //const [rowData, setRowData] = useState([]);
@@ -52,11 +52,12 @@ const TableDay = () => {
         return formatNumber(params.value) + ' шт';
     }
 
-    const getContextMenuItems = () => {
+    const getContextMenuItems = (params) => {
     let result = [
       {
         name: 'Open this day',
         action: function () {
+            let day = params.value
             // eslint-disable-next-line no-restricted-globals
           open('http://localhost:3000/tabletime');
         },
@@ -66,7 +67,6 @@ const TableDay = () => {
   };
 
     return (
-        <div>
             <div className="ag-theme-balham" row_style={row_style} style={{ height: 687, width: 647}}>
                 <AgGridReact defaultColDef={{
                     width: 215,
@@ -77,6 +77,7 @@ const TableDay = () => {
                 }}
                              getContextMenuItems={getContextMenuItems}
                              popupParent={document.querySelector('body')}
+                             debounceVerticalScrollbar={true}
                              enableRangeSelection={true}
                              clipboardDeliminator={' '}
                              columnTypes={{
@@ -135,7 +136,6 @@ const TableDay = () => {
                 />
                 </AgGridReact>
             </div>
-        </div>
     )
 }
 

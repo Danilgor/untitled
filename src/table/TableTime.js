@@ -4,9 +4,9 @@ import 'ag-grid-enterprise';
 import '../App.scss'
 import './Table.css'
 
-const TableTime = () => {
+const TableTime = (props) => {
 
-    const rowstyle = { background: 'black' };
+    const row_style = { background: 'black' };
     //const [rowData, setRowData] = useState([]);
 
     let rowData = [
@@ -46,17 +46,16 @@ const TableTime = () => {
 
 
     return (
-        <div>
-            <a href='http://localhost:3000/tableday'>DAY</a>
-            <div className="ag-theme-balham" rowstyle={rowstyle} style={{ height: 687, width: 647}}>
+            <div className="ag-theme-balham" row_style={row_style} style={{ height: 687, width: 647}}>
                 <AgGridReact defaultColDef={{
                     width: 215,
                     editable: false,
                     filter: 'agNumberColumnFilter',
                     floatingFilter: true,
-                    resizable: true,
+                    resizable: false,
                 }}
                              popupParent={document.querySelector('body')}
+                             debounceVerticalScrollbar={true}
                              enableRangeSelection={true}
                              clipboardDeliminator={' '}
                              defaultColGroupDef={{ marryChildren: true }}
@@ -97,7 +96,6 @@ const TableTime = () => {
                 />
                 </AgGridReact>
             </div>
-        </div>
     )
 }
 
