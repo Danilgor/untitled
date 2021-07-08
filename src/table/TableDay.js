@@ -1,8 +1,8 @@
 import React from 'react';
-import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import {AgGridColumn, AgGridReact} from 'ag-grid-react';
 import 'ag-grid-enterprise';
 import '../App.scss'
-import './Table.css'
+import './TableDay.css'
 
 const TableDay = (props) => {
 
@@ -53,27 +53,31 @@ const TableDay = (props) => {
     }
 
     const getContextMenuItems = (params) => {
-    let result = [
-      {
-        name: 'Open this day',
-        action: function () {
-            let day = params.value
-            // eslint-disable-next-line no-restricted-globals
-          open('http://localhost:3000/tabletime');
-        },
-      }
-    ];
-    return result;
-  };
+        if (0 === 0) {
+            return [
+                {
+                    name: 'Open this day',
+                    action: function () {
+                        let day = params.value
+                        localStorage.setItem('day', day);
+                        // eslint-disable-next-line no-restricted-globals
+                        open('http://localhost:3000/tabletime');
+                    },
+                }
+            ];
+        }
+        else return alert('is not date')
+    };
 
     return (
-            <div className="ag-theme-balham" row_style={row_style} style={{ height: 687, width: 647}}>
+            <div className="ag-theme-balham table-day" row_style={row_style} style={{ height: 687, width: 647}}>
                 <AgGridReact defaultColDef={{
                     width: 215,
                     editable: false,
                     filter: 'agNumberColumnFilter',
                     floatingFilter: true,
                     resizable: false,
+                    sortable: true,
                 }}
                              getContextMenuItems={getContextMenuItems}
                              popupParent={document.querySelector('body')}
@@ -118,20 +122,17 @@ const TableDay = (props) => {
                     filter="agDateColumnFilter"
                     type={['dateColumn', 'nonEditableColumn']}
                     comparator={dateComparator}
-                    sortable={true}
                 />
                 <AgGridColumn
                     headerName="price"
                     minWidth={215}
                     field="price"
-                    sortable={true}
                     valueFormatter={currencyFormatter}
                 />
                 <AgGridColumn
                     headerName="qty"
                     minWidth={215}
                     field="qty"
-                    sortable={true}
                     valueFormatter={textFormatter}
                 />
                 </AgGridReact>
@@ -142,6 +143,10 @@ const TableDay = (props) => {
 function dateComparator(date1, date2) {
   let date1Number = monthToComparableNumber(date1);
   let date2Number = monthToComparableNumber(date2);
+  function isDate(){
+
+      alert('is date')
+  };
   if (date1Number === null && date2Number === null) {
     return 0;
   }
@@ -160,8 +165,7 @@ function monthToComparableNumber(date) {
   let yearNumber = date.substring(6, 10);
   let monthNumber = date.substring(3, 5);
   let dayNumber = date.substring(0, 2);
-  let result = yearNumber * 10000 + monthNumber * 100 + dayNumber;
-  return result;
+  return yearNumber * 10000 + monthNumber * 100 + dayNumber;
 }
 
 export default TableDay

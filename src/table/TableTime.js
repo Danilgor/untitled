@@ -3,8 +3,10 @@ import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import 'ag-grid-enterprise';
 import '../App.scss'
 import './Table.css'
+import './rectangle.css'
 
-const TableTime = (props) => {
+const TableTime = () => {
+
 
     const row_style = { background: 'black' };
     //const [rowData, setRowData] = useState([]);
@@ -46,19 +48,20 @@ const TableTime = (props) => {
 
 
     return (
-            <div className="ag-theme-balham" row_style={row_style} style={{ height: 687, width: 647}}>
+            <div className="ag-theme-balham table-time" row_style={row_style} style={{ height: 687, width: 647}}>
+                <div className="rectangle textStyle">Данные за {localStorage.getItem('day')}</div>
                 <AgGridReact defaultColDef={{
                     width: 215,
                     editable: false,
                     filter: 'agNumberColumnFilter',
                     floatingFilter: true,
                     resizable: false,
+                    sortable: true,
                 }}
                              popupParent={document.querySelector('body')}
                              debounceVerticalScrollbar={true}
                              enableRangeSelection={true}
                              clipboardDeliminator={' '}
-                             defaultColGroupDef={{ marryChildren: true }}
                              columnTypes={{
                                  numberColumn: {
                                  width: 215,
@@ -68,8 +71,9 @@ const TableTime = (props) => {
                                  width: 215,
                                  filter: false,
                              },
-                             nonEditableColumn: { editable: false },
-                             dateColumn: {
+                             nonEditableColumn:
+                                 { editable: false },
+                                 dateColumn: {
                                  width: 215,
                                  filter: 'agNumberColumnFilter',
                              },
@@ -80,18 +84,15 @@ const TableTime = (props) => {
                     field="time"
                     minWidth={215}
                     filter="agNumberColumnFilter"
-                    sortable={true}
                 />
                 <AgGridColumn
                     headerName="price"
                     field="price"
-                    sortable={true}
                     valueFormatter={currencyFormatter}
                 />
                 <AgGridColumn
                     headerName="qty"
                     field="qty"
-                    sortable={true}
                     valueFormatter={textFormatter}
                 />
                 </AgGridReact>
